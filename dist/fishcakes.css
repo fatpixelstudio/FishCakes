@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box; }
+
+html {
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0; }
+
+body {
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: left;
+  color: #000000;
+  margin: 0;
+  padding: 1em; }
+
+/**
+ * Styling of the consent banner
+ */
+.fishcakes-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  display: none;
+  width: 100%;
+  background-color: #eeeeee;
+  border-top: 1px solid #dddddd; }
+  .fishcakes-banner.is-active {
+    display: block; }
+  .fishcakes-banner.is-hidden {
+    display: none; }
+
+.fishcakes-banner__contain {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 1em 2em; }
+
+.fishcakes-banner__text {
+  margin-right: 2em; }
+
+.fishcakes-button {
+  display: inline-block;
+  padding: 1em 1.5em;
+  border: none;
+  background-color: #333333;
+  color: #ffffff; }
+  .fishcakes-button:hover {
+    cursor: pointer; }
