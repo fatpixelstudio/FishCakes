@@ -43,6 +43,7 @@ body {
 	display: flex;
 	// flex-wrap: wrap;
 	align-items: center;
+	justify-content: space-between;
 	width: 100%;
 	padding: 1em 2em;
 }
@@ -60,5 +61,27 @@ body {
 
 	&:hover {
 		cursor: pointer;
+	}
+}
+
+.fishcakes-options {
+	position: absolute;
+	right: 0;
+	left: 0;
+	bottom: 100%;
+	display: block;
+	// width: 100%;
+	margin-top: -3em;
+	padding: 1em;
+	background-color: #eeeeee;
+	border-top: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+}
+
+.fishcakes-options-list {
+	display: flex;
+
+	div {
+		margin-right: 2em;
 	}
 }
