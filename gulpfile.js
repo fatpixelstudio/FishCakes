@@ -22,6 +22,7 @@ gulp.task('scripts', function () {
 			// 'src/javascript/polyfills/addeventlistener.js',
 			// 'src/js/utils/debounce.js',
 			'src/javascript/utils/cookie.js',
+			'src/javascript/utils/domready.js',
 			'src/javascript/main.js'
 		])
 		.pipe(jshint())
