@@ -27,27 +27,36 @@
 					This website uses cookies.
 				</p>
 			</div>
-			<div class="fishcakes-options js-fishcakes-options">
+			<div class="fishcakes-banner__options fishcakes-options js-fishcakes-options">
 				<p>We save functional cookies, analytical cookies and marketing cookies. Please let us know what cookies you consent to.</p>
-				<div class="fishcakes-options-list">
-					<div>
+				<form class="fishcakes-options__list js-fishcakes-form">
+					<div class="fishcakes-options__item">
 						<label><input type="checkbox" name="functional" checked="checked" disabled="disabled" /> Functional cookies</label>
-						<a href="#">More info</a>
+						<a href="#moreinfo-functional" class="js-fishcakes-moreinfo-button" data-text-show="More info" data-text-hide="Hide info">More info</a>
+						<div class="fishcakes-options__moreinfo" id="moreinfo-functional">
+							<p>Functional cookies allow websites to remember the user's site preferences and choices they make on the site including username, region, and language. This allows the website to provide personalized features like local news stories and weather if you share your location.</p>
+						</div>
 					</div>
-					<div>
+					<div class="fishcakes-options__item">
 						<label><input type="checkbox" name="analytical" /> Analytical cookies</label>
-						<a href="#">More info</a>
+						<a href="#moreinfo-analytical" class="js-fishcakes-moreinfo-button" data-text-show="More info" data-text-hide="Hide info">More info</a>
+						<div class="fishcakes-options__moreinfo" id="moreinfo-analytical">
+							<p>Analytical cookies are used to determine usage of a site, they may track an individual users, but only to the extent to allow a users journey through the site. They are not used for targeting adverts (Marketing Cookies)</p>
+						</div>
 					</div>
-					<div>
-						<label><input type="checkbox" name="marketing" /> Marketing cookies</label>
-						<a href="#">More info</a>
+					<div class="fishcakes-options__item">
+						<label><input type="checkbox" name="marketing" /> Marketing &amp; social cookies</label>
+						<a href="#moreinfo-marketing" class="js-fishcakes-moreinfo-button" data-text-show="More info" data-text-hide="Hide info">More info</a>
+						<div class="fishcakes-options__moreinfo" id="moreinfo-marketing">
+							<p>Marketing cookies are used to target advertising to a user (behavioural targeting). They are often served by third party companies, and track a user across websites. Social cookies are used by Social Media platforms such as Facebook, LinkedIn and YouTube, when you view or use embedded media. These cookies can sometimes track your activities and so are closely related to advertising cookies.</p>
+						</div>
 					</div>
-					<button class="fishcakes-button js-fishcakes-close">Save</button>
-				</div>
+					<button class="fishcakes-button fishcakes-options__button js-fishcakes-save" type="submit">Save</button>
+				</form>
 			</div>
 			<div class="fishcakes-banner__action">
-				<button class="fishcakes-link js-fishcakes-options">Show options</button>
-				<button class="fishcakes-button js-fishcakes-close">Accept all</button>
+				<button class="fishcakes-link js-fishcakes-options-button" data-text-show="Show options" data-text-hide="Hide options">Show options</button>
+				<button class="fishcakes-button js-fishcakes-accept-all">Accept all</button>
 			</div>
 		</div>
 	</div>
