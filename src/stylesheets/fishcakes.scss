@@ -41,11 +41,20 @@ body {
 
 .fishcakes-banner__contain {
 	display: flex;
+	flex-direction: column;
 	// flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-between;
+	align-items: flex-start;
+	justify-content: flex-start;
 	width: 100%;
 	padding: 1em 2em;
+}
+
+@media (min-width: 600px) {
+	.fishcakes-banner__contain {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+	}
 }
 
 .fishcakes-banner__text {
@@ -64,12 +73,19 @@ body {
 	}
 }
 
+.fishcakes-banner__options {
+	display: none;
+
+	&.is-active {
+		display: block;
+	}
+}
+
 .fishcakes-options {
 	position: absolute;
 	right: 0;
 	left: 0;
 	bottom: 100%;
-	display: block;
 	// width: 100%;
 	margin-top: -3em;
 	padding: 1em;
@@ -78,10 +94,41 @@ body {
 	border-bottom: 1px solid #dddddd;
 }
 
-.fishcakes-options-list {
+.fishcakes-options__list {
 	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
 
-	div {
+.fishcakes-options__item {
+	margin-bottom: 1em;
+}
+
+@media (min-width: 600px) {
+	.fishcakes-options__list {
+		flex-direction: row;
+	}
+
+	.fishcakes-options__item {
+		display: block;
+		width: 25%;
+		max-width: 25%;
 		margin-right: 2em;
+		margin-bottom: 0;
+	}
+}
+
+.fishcakes-options__button {
+	height: auto;
+	margin-right: 0;
+	margin-left: auto;
+}
+
+.fishcakes-options__moreinfo {
+	display: none;
+
+	&.is-active {
+		display: block;
+		width: 100%;
 	}
 }
