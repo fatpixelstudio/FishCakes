@@ -8,10 +8,16 @@
 	<title>Fishcakes: cookie consent plugin</title>
 
 	<link rel="stylesheet" href="dist/fishcakes.css" />
+	<script src="dist/fishcakes.js"></script>
 
 	<script>
-		function fishcakeswrapper_head() {
-			alert('this is a script running');
+		function fishcakeswrapper_head(analytical, marketing) {
+			if(analytical) {
+				alert('this is an analytical script running in head');
+			}
+			if (marketing) {
+				alert('this is a marketing or social script running in head');
+			}
 		}
 	</script>
 </head>
@@ -62,12 +68,15 @@
 	</div>
 
 	<script>
-		function fishcakeswrapper_foot() {
-			alert('another script running');
+		function fishcakeswrapper_foot(analytical, marketing) {
+			if (analytical) {
+				alert('this is an analytical script running in footer');
+			}
+			if (marketing) {
+				alert('this is a marketing or social script running in footer');
+			}
 		}
 	</script>
-
-	<script src="dist/fishcakes.js"></script>
 
 </body>
 
