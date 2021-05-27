@@ -79,8 +79,9 @@ var Fishcakes = (function () {
 		fishcakesoptions : document.querySelector('.js-fishcakes-options'),
 		fishcakesoptionsbutton : document.querySelector('.js-fishcakes-options-button'),
 		fishcakesinfobutton : document.querySelectorAll('.js-fishcakes-moreinfo-button'),
-		fishcakesoptionsform : document.querySelector('.js-fishcakes-form')
-	}
+		fishcakesoptionsform : document.querySelector('.js-fishcakes-form'),
+		fishcakesedit : document.querySelector('.js-fishcakes-edit')
+	};
 
 	function toggleInfo(event) {
 		event.preventDefault();
@@ -115,6 +116,11 @@ var Fishcakes = (function () {
 		elements.fishcakesbanner.classList.remove('is-active');
 		elements.fishcakesbanner.classList.add('is-hidden');
 		cookie.set('hide_cookie_banner', 'yes', 365);
+
+		var marketingembeds = document.querySelectorAll('.js-fishcakes-marketing-embed');
+		if(marketingembeds !== null && marketingembeds.length > 0 && cookie.get('cookie_consent_marketing') === 'yes') {
+			location.reload();
+		}
 	}
 
 	function consentAllScript() {
@@ -140,6 +146,14 @@ var Fishcakes = (function () {
 		fishcakeswrapper_foot(analytical, marketing);
 	}
 
+	function resetOptions(event) {
+		event.preventDefault();
+
+		elements.fishcakesbanner.classList.remove('is-hidden');
+		elements.fishcakesbanner.classList.add('is-active');
+		cookie.erase('hide_cookie_banner');
+	}
+
 	function handleForm(event) {
 		event.preventDefault();
 
@@ -160,6 +174,7 @@ var Fishcakes = (function () {
 		elements.fishcakesoptionsbutton = document.querySelector('.js-fishcakes-options-button');
 		elements.fishcakesinfobutton = document.querySelectorAll('.js-fishcakes-moreinfo-button');
 		elements.fishcakesoptionsform = document.querySelector('.js-fishcakes-form');
+		elements.fishcakeseditbutton = document.querySelectorAll('.js-fishcakes-edit');
 
 		if (cookie.get('hide_cookie_banner') === 'yes') {
 			elements.fishcakesbanner.classList.add('is-hidden');
@@ -177,6 +192,12 @@ var Fishcakes = (function () {
 
 		for(i = 0; i < elements.fishcakesinfobutton.length; i++) {
 			elements.fishcakesinfobutton[i].addEventListener('click', toggleInfo, false);
+		}
+
+		if(elements.fishcakeseditbutton !==  null && elements.fishcakeseditbutton.length > 0) {
+			for (i = 0; i < elements.fishcakeseditbutton.length; i++) {
+				elements.fishcakeseditbutton[i].addEventListener('click', resetOptions, false);
+			}
 		}
 	}
 
