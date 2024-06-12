@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/fatpixelstudio/Rambutan#readme",
   "devDependencies": {
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.0",
     "gulp-autoprefixer": "^8.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-jshint": "^2.1.0",
