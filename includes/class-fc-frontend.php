@@ -148,8 +148,15 @@ class FC_Frontend {
 	 *
 	 * Nothing loads until the visitor has given consent for the script's
 	 * category; the front-end runtime activates them without a reload.
-	 * Note the src is kept in a data attribute: a script tag with a
-	 * non-executable type must never even be fetched.
+	 *
+	 * Two placeholder formats:
+	 * - Source URLs: <script type="text/plain" data-fc-src="…"> — the src
+	 *   is kept in a data attribute so the file is never even fetched.
+	 *   There is no element content, so nothing can break out of it.
+	 * - Inline code: a JSON data island <script type="application/json">.
+	 *   PHP's json_encode escapes "/" as "\/" by default, so a literal
+	 *   "</script>" inside a pasted snippet can never terminate the
+	 *   element early and turn the remainder into live, ungated markup.
 	 *
 	 * @param string $location "head" or "foot".
 	 * @return void
@@ -185,10 +192,10 @@ class FC_Frontend {
 				);
 			} elseif ( ! empty( $script['code'] ) ) {
 				printf(
-					'<script type="text/plain" data-fc-category="%1$s"%2$s>%3$s</script>' . "\n",
+					'<script type="application/json" data-fc-category="%1$s"%2$s>%3$s</script>' . "\n",
 					esc_attr( $category ),
 					$attr, // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped above.
-					$script['code'] // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- admin-only raw code, inert until consent.
+					wp_json_encode( array( 'code' => $script['code'] ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- JSON data island, "</script>" neutralized by json_encode's "\/" escaping.
 				);
 			}
 		}

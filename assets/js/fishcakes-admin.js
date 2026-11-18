@@ -41,8 +41,14 @@
 				return;
 			}
 
-			const row = template.content.cloneNode( true );
-			rows.appendChild( row );
+			// Rows are submitted with explicit numeric indices so PHP
+			// keeps one row's fields together. The template carries a
+			// __IDX__ placeholder; replace it with the next free index.
+			const nextIndex = parseInt( rows.getAttribute( 'data-next-index' ), 10 ) || 0;
+			const html = template.innerHTML.replaceAll( '__IDX__', String( nextIndex ) );
+
+			rows.insertAdjacentHTML( 'beforeend', html );
+			rows.setAttribute( 'data-next-index', String( nextIndex + 1 ) );
 
 			const $added = $( rows ).find( '.fc-script-row' ).last();
 			syncRowType( $added );

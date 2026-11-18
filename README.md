@@ -18,11 +18,17 @@ FishCakes asks visitors for consent before anything non-essential is placed or l
 Scripts registered under **Settings → FishCakes → Scripts** are printed as inert placeholders:
 
 ```html
-<script type="text/plain" data-fc-category="analytical" data-fc-name="Google Analytics 4">…</script>
+<!-- Source URL scripts: the URL lives in a data attribute, so the file is
+     never even fetched without consent. -->
 <script type="text/plain" data-fc-category="marketing" data-fc-src="https://…/pixel.js"></script>
+
+<!-- Inline code: a JSON data island. json_encode escapes "/" as "\/", so a
+     literal </script> inside a pasted snippet can never break out of the
+     element into live, ungated markup. -->
+<script type="application/json" data-fc-category="analytical" data-fc-name="Google Analytics 4">{"code":"…"}</script>
 ```
 
-Nothing is fetched or executed until the visitor consents to the script's category (note the `data-fc-src` attribute: a `text/plain` script is never even fetched). On consent the runtime promotes the placeholders to real scripts, in document order, without a page reload. Paste snippets with or without their surrounding `<script>` tags — src-only tags become URL scripts automatically.
+Nothing is fetched or executed until the visitor consents to the script's category. On consent the runtime parses the island, promotes the placeholders to real scripts via `textContent` (never parsed as HTML), in document order, without a page reload. Paste snippets with or without their surrounding `<script>` tags — src-only tags become URL scripts automatically. Manually registered placeholders may also use the legacy raw format (`<script type="text/plain" data-fc-category="…">code</script>`); the runtime supports both.
 
 ### Blocked embeds
 
@@ -48,7 +54,7 @@ Dialog semantics (`role="dialog"`, non-modal) with focus moved to the banner on 
 
 **Settings → FishCakes**:
 
-- **General** — enable, banner position, consent expiry (days), banner version, privacy page, automatic footer link.
+- **General** — enable, banner position, consent expiry (days), banner version, privacy page, automatic footer link, cache-safe mode.
 - **Appearance** — five color pickers and a border radius, all output as `--fc-*` CSS custom properties; the stylesheet reads every visual property from those variables.
 - **Cookie categories** — labels and descriptions per category (mention purposes and third parties, as the GDPR expects).
 - **Banner texts** — every text is editable; empty means "use the translated default" (shown as the placeholder). The intro supports a `{privacy_link}` token and basic HTML.
@@ -111,10 +117,21 @@ Useful test scenarios:
 4. Change your mind via the footer link → checkboxes reflect the current choice; revoking removes embeds immediately.
 5. Bump the banner version → the banner returns for every visitor.
 
+## Security
+
+A quick overview of the security posture — audited during development:
+
+- **No direct superglobals, no SQL, no file I/O, no outbound requests.** The only user input read directly is the consent cookie, which is `json_decode`'d and only ever used as booleans — never reflected into markup.
+- **Everything is escaped on output** (`esc_html`, `esc_attr`, `esc_textarea`, `wp_kses`, `esc_url`), and admin texts are *also* sanitized on save with a `wp_kses` whitelist that blocks `javascript:` URLs. Defense in depth on both ends.
+- **Saving goes through the Settings API**: nonces, CSRF protection, option-page whitelisting and the `manage_options` capability are all enforced by WordPress core. Snippet code is never exposed via REST (`show_in_rest` is off).
+- **Inline snippets are stored raw** (only administrators can enter them — a capability that can already inject arbitrary code through themes). They are printed as JSON data islands so a pasted `</script>` can never escape the placeholder, and they stay completely inert until consent.
+- **Script URLs are scheme-checked twice**: `esc_url_raw` rejects non-whitelisted schemes, and the sanitizer explicitly requires `http`/`https`.
+- **The front-end runtime uses no `eval`, `innerHTML` or `insertAdjacentHTML`** — only `textContent`, property assignment and `template.content` cloning of server-parsed markup.
+
 ## Notes & limitations
 
 - **Revocation and already-loaded scripts:** withdrawing consent stops scripts from loading on the next page view; already-initialized trackers (e.g. GA) cannot be un-executed in the current view. This is the standard behavior for client-side consent tools.
-- **Caching:** the consent cookie is read server-side, so consented visitors get embeds rendered directly. With full-page caching that ignores cookies, embeds come back as placeholders and are upgraded in the browser immediately after — privacy-safe either way.
+- **Caching:** the consent cookie is read server-side, so consented visitors get embeds rendered directly. With full-page caching that ignores cookies, enable **Settings → FishCakes → General → Cache-safe mode**: embeds are then always rendered as placeholders and upgraded in the browser immediately after, so cached pages can never show embeds to visitors who did not consent.
 - **`<template>` support:** the inert template technique requires a browser from this decade (everything since ~2017). In truly ancient browsers, blocked embeds would not be replaceable; scripts stay blocked regardless.
 - **IAB TCF / cross-domain consent signaling** is out of scope for v2.
 

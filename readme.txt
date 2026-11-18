@@ -50,7 +50,7 @@ By default YouTube, Vimeo, Spotify, SoundCloud and Google (Maps/Docs/Calendar). 
 
 = What about page caching? =
 
-The consent cookie is read server-side, so embeds are rendered directly for visitors who consented. With aggressive full-page caching that ignores cookies, embeds are served as placeholders and upgraded in the browser right after — privacy-safe either way.
+The consent cookie is read server-side, so embeds are rendered directly for visitors who consented. With a full-page cache that ignores cookies, enable "Cache-safe mode" (Settings → FishCakes → General): embeds are then always rendered as placeholders and upgraded in the browser right after — cached pages can never show embeds to visitors who did not consent.
 
 = Where does the consent proof live? =
 
@@ -66,9 +66,11 @@ Yes — via the footer link, the `[fishcakes_cookie_preferences]` shortcode or a
 
 * Complete rewrite as a WordPress plugin.
 * Settings page (Settings → FishCakes) for texts, colors, scripts and blocked providers.
-* Gated script placeholders for head/footer, analytical/marketing.
+* Gated script placeholders for head/footer, analytical/marketing; inline code is wrapped in JSON data islands so pasted `</script>` sequences can never break out of the placeholder.
 * Embed blocking for block editor, classic editor, raw iframes and ACF fields.
 * Consent record with banner version and expiry; re-asking built in.
+* Cache-safe mode for full-page caches that ignore cookies.
+* Multisite-aware uninstall cleanup.
 * Accessibility overhaul: dialog semantics, focus management, live announcements, visible focus.
 * New buildless asset pipeline (vanilla JS + plain CSS), yarn for linting only.
 * Dropped the gulp build and the static example page.

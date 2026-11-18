@@ -32,6 +32,7 @@ class FC_Settings {
 			'banner_version'   => 1,
 			'privacy_page'     => 0,
 			'auto_footer_link' => true,
+			'cache_safe'       => false,
 
 			'texts'            => array(
 				'banner_title'        => '',
@@ -94,7 +95,14 @@ class FC_Settings {
 
 		$settings = array();
 		foreach ( self::defaults() as $key => $default ) {
-			if ( is_array( $default ) ) {
+			if ( 'scripts' === $key ) {
+				/*
+				 * List-shaped setting (repeater rows). Rows are fully
+				 * sanitized on save, so the stored list is used as-is —
+				 * merging it against the (empty) default list would wipe it.
+				 */
+				$settings[ $key ] = is_array( $saved[ $key ] ?? null ) ? $saved[ $key ] : array();
+			} elseif ( is_array( $default ) ) {
 				$settings[ $key ] = self::merge_assoc( $saved[ $key ] ?? null, $default );
 			} else {
 				$settings[ $key ] = $saved[ $key ] ?? $default;
@@ -345,6 +353,7 @@ class FC_Settings {
 		$out['banner_version']     = max( 1, absint( $input['banner_version'] ?? 1 ) );
 		$out['privacy_page']       = absint( $input['privacy_page'] ?? 0 );
 		$out['auto_footer_link']   = ! empty( $input['auto_footer_link'] );
+		$out['cache_safe']         = ! empty( $input['cache_safe'] );
 		$out['blocker_enabled']    = ! empty( $input['blocker_enabled'] );
 		$out['radius']             = self::sanitize_radius( (string) ( $input['radius'] ?? '' ) );
 
@@ -431,7 +440,8 @@ class FC_Settings {
 	 * @return array<int,array<string,mixed>>
 	 */
 	private static function sanitize_scripts( array $rows ): array {
-		$out = array();
+		$out     = array();
+		$dropped = 0;
 
 		foreach ( $rows as $row ) {
 			if ( ! is_array( $row ) ) {
@@ -454,11 +464,25 @@ class FC_Settings {
 				$code = $unwrapped['code'];
 			}
 
-			// Drop empty rows entirely.
+			// Defense in depth: only http(s) sources are accepted.
+			// esc_url_raw already rejects other schemes (javascript:, …);
+			// this explicit check keeps the guarantee even if the escaping
+			// pipeline ever changes.
+			if ( '' !== $url ) {
+				$scheme = strtolower( (string) wp_parse_url( $url, PHP_URL_SCHEME ) );
+
+				if ( ! in_array( $scheme, array( 'http', 'https' ), true ) ) {
+					$url = '';
+				}
+			}
+
+			// Drop empty or invalid rows entirely.
 			if ( 'url' === $type && '' === $url ) {
+				$dropped++;
 				continue;
 			}
 			if ( 'inline' === $type && '' === trim( $code ) ) {
+				$dropped++;
 				continue;
 			}
 
@@ -471,6 +495,23 @@ class FC_Settings {
 				'type'     => $type,
 				'code'     => $code,
 				'url'      => $url,
+			);
+		}
+
+		if ( $dropped > 0 ) {
+			add_settings_error(
+				self::OPTION,
+				'fc_scripts_dropped',
+				sprintf(
+					/* translators: %d: number of script rows. */
+					_n(
+						'FishCakes: %d script was not saved because it was empty or its URL was invalid.',
+						'FishCakes: %d scripts were not saved because they were empty or their URLs were invalid.',
+						$dropped,
+						'fishcakes'
+					),
+					$dropped
+				)
 			);
 		}
 

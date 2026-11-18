@@ -229,6 +229,24 @@ msgid ""
 msgstr ""
 
 #: includes/class-fc-admin.php
+msgid "Cache-safe mode"
+msgstr ""
+
+#: includes/class-fc-admin.php
+msgid ""
+"For sites with a full-page cache that ignores cookies. Embeds are always "
+"rendered as placeholders and upgraded in the browser, so cached pages can "
+"never show embeds to visitors who did not consent."
+msgstr ""
+
+#. translators: %d: number of script rows.
+#: includes/class-fc-settings.php
+msgid "FishCakes: %d script was not saved because it was empty or its URL was invalid."
+msgid_plural "FishCakes: %d scripts were not saved because they were empty or their URLs were invalid."
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-fc-admin.php
 msgid "Background"
 msgstr ""
 

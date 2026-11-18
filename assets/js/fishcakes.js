@@ -136,14 +136,41 @@
 	/* ------------------------------------------------------------------ *
 	 * Gated scripts
 	 *
-	 * Registered scripts are printed by PHP as inert
-	 * <script type="text/plain" data-fc-category="…"> placeholders.
-	 * They are promoted to real scripts — in document order, without a
-	 * page reload — once consent for their category exists.
+	 * Registered scripts are printed by PHP as inert placeholders:
+	 * - URL scripts: <script type="text/plain" data-fc-src="…">
+	 * - Inline code: a JSON data island, <script type="application/json">.
+	 *   The island is parsed with JSON.parse and injected via
+	 *   textContent, so a literal "</script>" inside a pasted snippet
+	 *   can never break out of the element into live markup.
+	 *
+	 * Placeholders are promoted to real scripts — in document order,
+	 * without a page reload — once consent for their category exists.
 	 * ------------------------------------------------------------------ */
 
+	/**
+	 * Reads the inline code from a placeholder. Supports the JSON data
+	 * island (PHP output) and the legacy raw "text/plain" format for
+	 * manually registered placeholders.
+	 */
+	function placeholderCode( node ) {
+		const type = ( node.getAttribute( 'type' ) || '' ).toLowerCase();
+
+		if ( type === 'application/json' ) {
+			try {
+				const data = JSON.parse( node.textContent );
+				return data && typeof data.code === 'string' ? data.code : '';
+			} catch ( error ) {
+				return '';
+			}
+		}
+
+		return node.textContent;
+	}
+
 	function promoteScripts( state ) {
-		const placeholders = document.querySelectorAll( 'script[type="text/plain"][data-fc-category]' );
+		const placeholders = document.querySelectorAll(
+			'script[type="text/plain"][data-fc-category], script[type="application/json"][data-fc-category]'
+		);
 
 		placeholders.forEach( ( node ) => {
 			const category = node.getAttribute( 'data-fc-category' );
@@ -166,7 +193,7 @@
 			if ( src ) {
 				replacement.src = src;
 			} else {
-				replacement.textContent = node.textContent;
+				replacement.textContent = placeholderCode( node );
 			}
 
 			if ( node.parentNode ) {

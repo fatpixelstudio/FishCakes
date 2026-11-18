@@ -179,7 +179,16 @@ class FC_Blocker {
 		$marked  = self::mark_iframe( $embed_html, $slug );
 		$consent = FC_Consent::get();
 
-		$allowed = null !== $consent && $consent['marketing'];
+		/*
+		 * With consent for marketing the embed renders directly (no flash
+		 * of a placeholder). In cache-safe mode the consent cookie is
+		 * deliberately ignored here, so the served HTML never depends on
+		 * it and a full-page cache cannot leak embeds to visitors who
+		 * never consented; the runtime upgrades in the browser instead.
+		 */
+		$allowed = null !== $consent
+			&& $consent['marketing']
+			&& empty( FC_Settings::get()['cache_safe'] );
 
 		// Current notice text: "no choice yet" vs "preferences don't allow".
 		$no_choice = FC_Settings::text( 'embed_text_nochoice' );

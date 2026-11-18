@@ -109,12 +109,25 @@
  * Banner
  * ------------------------------------------------------------------ */
 
+/*
+ * The banner and the options panel are toggled through the [hidden]
+ * attribute. Guard it with !important: the attribute's display:none
+ * (UA stylesheet) loses against any author display rule — including
+ * the .fc-blocker/.fc-btn rules below and any theme CSS that happens
+ * to target these classes. Without this guard the banner would ignore
+ * the attribute entirely: it would be visible before consent and stay
+ * visible after a choice is made.
+ */
+.fc-banner[hidden],
+.fc-options[hidden] {
+	display: none !important;
+}
+
 .fc-banner {
 	position: fixed;
 	inset-inline: 0;
 	bottom: 0;
 	z-index: var(--fc-z-index);
-	display: block;
 	max-height: calc(100dvh - 2rem);
 	margin: 0;
 	padding: 1rem 1.25rem;

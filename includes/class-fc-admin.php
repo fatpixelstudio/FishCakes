@@ -195,6 +195,14 @@ class FC_Admin {
 			self::PAGE_SLUG,
 			'fc_general'
 		);
+
+		add_settings_field(
+			'fc_cache_safe',
+			__( 'Cache-safe mode', 'fishcakes' ),
+			fn() => self::checkbox_field( 'cache_safe', __( 'For sites with a full-page cache that ignores cookies. Embeds are always rendered as placeholders and upgraded in the browser, so cached pages can never show embeds to visitors who did not consent.', 'fishcakes' ) ),
+			self::PAGE_SLUG,
+			'fc_general'
+		);
 	}
 
 	/**
@@ -528,19 +536,35 @@ class FC_Admin {
 	/**
 	 * The scripts repeater.
 	 *
+	 * Rows are submitted with explicit numeric indices
+	 * (fishcakes_settings[scripts][N][…]). PHP groups the fields of one
+	 * row together that way; auto-append "[]" names would split every
+	 * field into its own array element. New rows are cloned client-side
+	 * from the template, whose "__IDX__" placeholder is replaced with
+	 * the next index from data-next-index.
+	 *
 	 * @return void
 	 */
 	public static function field_scripts(): void {
 		$scripts = FC_Settings::get()['scripts'];
+
+		$next_index = 0;
+		foreach ( $scripts as $index => $script ) {
+			if ( is_numeric( $index ) ) {
+				$next_index = max( $next_index, (int) $index + 1 );
+			}
+		}
 		?>
 		<div class="fc-scripts">
 			<p class="description"><?php esc_html_e( 'Scripts are printed as inert placeholders and only execute after the visitor consents to their category. The choice is applied without a page reload.', 'fishcakes' ); ?></p>
-			<div id="fc-script-rows">
+			<div id="fc-script-rows" data-next-index="<?php echo esc_attr( (string) $next_index ); ?>">
 				<?php
-				if ( ! empty( $scripts ) ) {
-					foreach ( $scripts as $script ) {
-						self::render_script_row( $script );
+				foreach ( $scripts as $index => $script ) {
+					if ( ! is_numeric( $index ) ) {
+						continue;
 					}
+
+					self::render_script_row( (string) (int) $index, is_array( $script ) ? $script : array() );
 				}
 				?>
 			</div>
@@ -548,7 +572,7 @@ class FC_Admin {
 				<button type="button" class="button button-secondary" id="fc-script-add"><?php esc_html_e( 'Add script', 'fishcakes' ); ?></button>
 			</p>
 			<template id="fc-script-row-template">
-				<?php self::render_script_row( array() ); ?>
+				<?php self::render_script_row( '__IDX__', array() ); ?>
 			</template>
 			<p class="description"><?php esc_html_e( 'Inline code: paste the snippet, with or without the surrounding <script> tags. Source URL: load an external script file.', 'fishcakes' ); ?></p>
 		</div>
@@ -558,10 +582,11 @@ class FC_Admin {
 	/**
 	 * Renders a single repeater row, filled or empty.
 	 *
+	 * @param string              $index Row index (numeric, or "__IDX__" for the JS template).
 	 * @param array<string,mixed> $script Saved script row.
 	 * @return void
 	 */
-	private static function render_script_row( array $script ): void {
+	private static function render_script_row( string $index, array $script ): void {
 		$script = wp_parse_args(
 			$script,
 			array(
@@ -576,7 +601,7 @@ class FC_Admin {
 			)
 		);
 
-		$name = self::name( 'scripts' ) . '[]';
+		$name = self::name( 'scripts' ) . '[' . $index . ']';
 		?>
 		<div class="fc-script-row">
 			<div class="fc-script-row__head">
