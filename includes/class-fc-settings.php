@@ -65,6 +65,20 @@ class FC_Settings {
 
 			'radius'           => '',
 
+			/*
+			 * Extra classes added next to the plugin's own fc-* classes, so
+			 * the banner and placeholders pick up a theme's design system.
+			 * Defaults match the Fat Pixel NoodleSoup starter kit; an empty
+			 * value adds nothing.
+			 */
+			'classes'          => array(
+				'heading'          => 'gamma-heading',
+				'button'           => 'button',
+				'button_primary'   => 'button--primary',
+				'button_secondary' => 'button--secondary',
+				'link'             => 'link',
+			),
+
 			'blocker_enabled'  => true,
 			'providers'        => array(
 				'youtube'    => true,
@@ -367,6 +381,10 @@ class FC_Settings {
 			$out['colors'][ $key ] = $color ?: '';
 		}
 
+		foreach ( array_keys( $defaults['classes'] ) as $key ) {
+			$out['classes'][ $key ] = self::sanitize_classes( (string) ( $input['classes'][ $key ] ?? '' ) );
+		}
+
 		foreach ( array_keys( $defaults['providers'] ) as $slug ) {
 			$out['providers'][ $slug ] = ! empty( $input['providers'][ $slug ] );
 		}
@@ -390,6 +408,38 @@ class FC_Settings {
 		}
 
 		return min( 365, $days );
+	}
+
+	/**
+	 * Sanitizes a space-separated list of CSS class names.
+	 *
+	 * @param string $value Submitted value.
+	 * @return string
+	 */
+	public static function sanitize_classes( string $value ): string {
+		$classes = preg_split( '/\s+/', $value, -1, PREG_SPLIT_NO_EMPTY ) ?: array();
+		$classes = array_filter( array_map( 'sanitize_html_class', $classes ) );
+
+		return implode( ' ', array_unique( $classes ) );
+	}
+
+	/**
+	 * Builds a class attribute value: the plugin's own classes followed by
+	 * the configured theme classes for the given keys.
+	 *
+	 * @param string   $base Plugin classes (fc-*), always kept.
+	 * @param string[] $keys Keys of the "classes" setting to append.
+	 * @return string Sanitized, space-separated class list.
+	 */
+	public static function classes( string $base, array $keys = array() ): string {
+		$extra = self::get()['classes'];
+		$list  = array( $base );
+
+		foreach ( $keys as $key ) {
+			$list[] = (string) ( $extra[ $key ] ?? '' );
+		}
+
+		return self::sanitize_classes( implode( ' ', $list ) );
 	}
 
 	/**

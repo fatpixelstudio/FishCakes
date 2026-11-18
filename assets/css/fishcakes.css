@@ -305,6 +305,33 @@ html[data-fc-position='top'].fc-has-banner body {
 	display: none;
 }
 
+/*
+ * Once allowed, the placeholder chrome disappears so the embed looks
+ * exactly as it would without FishCakes. position: static matters for
+ * block editor embeds: core positions the iframe absolutely against
+ * .wp-block-embed__wrapper, and a positioned .fc-blocker would capture
+ * it instead (collapsing the video to the blocker's padding).
+ */
+.fc-blocker.is-allowed {
+	position: static;
+	padding: 0;
+	border: 0;
+	border-radius: 0;
+	background: none;
+	text-align: inherit;
+}
+
+/*
+ * Block editor embeds with an aspect ratio reserve their height through
+ * a padding-top ::before on the wrapper. While blocked, the placeholder
+ * sizes itself, so drop that spacer (otherwise it stacks an empty
+ * 16:9 box above the notice). When allowed, the spacer stays and the
+ * iframe fills it as core intends.
+ */
+.wp-has-aspect-ratio .wp-block-embed__wrapper:has(> .fc-blocker.is-blocked)::before {
+	display: none;
+}
+
 /* ------------------------------------------------------------------ *
  * Motion preferences
  * ------------------------------------------------------------------ */

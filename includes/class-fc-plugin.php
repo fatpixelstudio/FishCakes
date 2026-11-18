@@ -28,6 +28,8 @@ final class FC_Plugin {
 	 * @return void
 	 */
 	public static function init(): void {
+		add_action( 'init', array( __CLASS__, 'load_textdomain' ) );
+
 		if ( ! self::requirements_met() ) {
 			add_action( 'admin_notices', array( __CLASS__, 'requirements_notice' ) );
 			return;
@@ -38,6 +40,17 @@ final class FC_Plugin {
 		if ( is_admin() ) {
 			FC_Admin::init();
 		}
+	}
+
+	/**
+	 * Loads bundled translations from /languages. Translations installed
+	 * in wp-content/languages/plugins (e.g. from translate.wordpress.org)
+	 * take precedence.
+	 *
+	 * @return void
+	 */
+	public static function load_textdomain(): void {
+		load_plugin_textdomain( 'fishcakes', false, dirname( plugin_basename( FISHCAKES_FILE ) ) . '/languages' );
 	}
 
 	/**

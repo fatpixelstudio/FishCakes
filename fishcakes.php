@@ -11,6 +11,7 @@
  * License:           MPL-2.0
  * License URI:       https://www.mozilla.org/en-US/MPL/2.0/
  * Text Domain:       fishcakes
+ * Domain Path:       /languages
  *
  * @package FishCakes
  */

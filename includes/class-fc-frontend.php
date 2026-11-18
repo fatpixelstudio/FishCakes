@@ -214,7 +214,8 @@ class FC_Frontend {
 		}
 
 		printf(
-			'<button type="button" class="fc-footer-link" data-fc-open>%s</button>',
+			'<button type="button" class="%1$s" data-fc-open>%2$s</button>',
+			esc_attr( FC_Settings::classes( 'fc-footer-link', array( 'link' ) ) ),
 			esc_html( FC_Settings::text( 'footer_link_text' ) )
 		);
 	}
@@ -233,7 +234,8 @@ class FC_Frontend {
 		}
 
 		return sprintf(
-			'<button type="button" class="fc-link fc-reopen" data-fc-open>%s</button>',
+			'<button type="button" class="%1$s" data-fc-open>%2$s</button>',
+			esc_attr( FC_Settings::classes( 'fc-link fc-reopen', array( 'link' ) ) ),
 			esc_html( FC_Settings::text( 'footer_link_text' ) )
 		);
 	}
@@ -261,13 +263,13 @@ class FC_Frontend {
 		<div class="fc-banner fc-banner--<?php echo esc_attr( $position ); ?>" id="fc-banner" role="dialog" aria-modal="false" aria-labelledby="fc-banner-title" aria-describedby="fc-banner-text" data-fc-banner data-nosnippet hidden>
 			<div class="fc-banner__inner">
 				<div class="fc-banner__content">
-					<h2 class="fc-banner__title" id="fc-banner-title" tabindex="-1"><?php echo esc_html( FC_Settings::text( 'banner_title' ) ); ?></h2>
+					<h2 class="<?php echo esc_attr( FC_Settings::classes( 'fc-banner__title', array( 'heading' ) ) ); ?>" id="fc-banner-title" tabindex="-1"><?php echo esc_html( FC_Settings::text( 'banner_title' ) ); ?></h2>
 					<p class="fc-banner__text" id="fc-banner-text"><?php echo wp_kses( $intro, $allowed ); ?></p>
 				</div>
 				<div class="fc-banner__actions">
-					<button type="button" class="fc-btn fc-btn--primary" data-fc-accept><?php echo esc_html( FC_Settings::text( 'button_accept' ) ); ?></button>
-					<button type="button" class="fc-btn fc-btn--secondary" data-fc-reject><?php echo esc_html( FC_Settings::text( 'button_reject' ) ); ?></button>
-					<button type="button" class="fc-link" data-fc-toggle aria-expanded="false" aria-controls="fc-options"><?php echo esc_html( FC_Settings::text( 'button_options' ) ); ?></button>
+					<button type="button" class="<?php echo esc_attr( FC_Settings::classes( 'fc-btn fc-btn--primary', array( 'button', 'button_primary' ) ) ); ?>" data-fc-accept><?php echo esc_html( FC_Settings::text( 'button_accept' ) ); ?></button>
+					<button type="button" class="<?php echo esc_attr( FC_Settings::classes( 'fc-btn fc-btn--secondary', array( 'button', 'button_secondary' ) ) ); ?>" data-fc-reject><?php echo esc_html( FC_Settings::text( 'button_reject' ) ); ?></button>
+					<button type="button" class="<?php echo esc_attr( FC_Settings::classes( 'fc-link', array( 'link' ) ) ); ?>" data-fc-toggle aria-expanded="false" aria-controls="fc-options"><?php echo esc_html( FC_Settings::text( 'button_options' ) ); ?></button>
 				</div>
 			</div>
 			<form class="fc-options" id="fc-options" data-fc-form hidden>
@@ -293,7 +295,7 @@ class FC_Frontend {
 					<p class="fc-category__desc" id="fc-desc-marketing"><?php echo wp_kses( FC_Settings::text( 'marketing_desc' ), $allowed ); ?></p>
 				</div>
 				<div class="fc-options__save">
-					<button type="submit" class="fc-btn fc-btn--primary"><?php echo esc_html( FC_Settings::text( 'button_save' ) ); ?></button>
+					<button type="submit" class="<?php echo esc_attr( FC_Settings::classes( 'fc-btn fc-btn--primary', array( 'button', 'button_primary' ) ) ); ?>"><?php echo esc_html( FC_Settings::text( 'button_save' ) ); ?></button>
 				</div>
 			</form>
 		</div>

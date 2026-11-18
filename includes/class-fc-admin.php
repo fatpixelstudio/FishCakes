@@ -96,6 +96,7 @@ class FC_Admin {
 		$sections = array(
 			'fc_general'    => __( 'General', 'fishcakes' ),
 			'fc_appearance' => __( 'Appearance', 'fishcakes' ),
+			'fc_classes'    => __( 'Theme classes', 'fishcakes' ),
 			'fc_categories' => __( 'Cookie categories', 'fishcakes' ),
 			'fc_texts'      => __( 'Banner texts', 'fishcakes' ),
 			'fc_scripts'    => __( 'Scripts', 'fishcakes' ),
@@ -108,6 +109,7 @@ class FC_Admin {
 
 		self::add_general_fields();
 		self::add_appearance_fields();
+		self::add_class_fields();
 		self::add_category_fields();
 		self::add_banner_text_fields();
 		self::add_script_fields();
@@ -236,6 +238,31 @@ class FC_Admin {
 			self::PAGE_SLUG,
 			'fc_appearance'
 		);
+	}
+
+	/**
+	 * Theme class section fields.
+	 *
+	 * @return void
+	 */
+	private static function add_class_fields(): void {
+		$labels = array(
+			'heading'          => __( 'Titles', 'fishcakes' ),
+			'button'           => __( 'Buttons', 'fishcakes' ),
+			'button_primary'   => __( 'Buttons (primary)', 'fishcakes' ),
+			'button_secondary' => __( 'Buttons (secondary)', 'fishcakes' ),
+			'link'             => __( 'Links', 'fishcakes' ),
+		);
+
+		foreach ( $labels as $key => $label ) {
+			add_settings_field(
+				'fc_class_' . $key,
+				$label,
+				fn() => self::class_field( $key ),
+				self::PAGE_SLUG,
+				'fc_classes'
+			);
+		}
 	}
 
 	/**
@@ -454,6 +481,29 @@ class FC_Admin {
 			<input type="text" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $custom ); ?>" placeholder="<?php echo esc_attr( $default ); ?>" class="large-text">
 		<?php endif; ?>
 		<p class="description"><?php echo esc_html( $note ); ?></p>
+		<?php
+	}
+
+	/**
+	 * Class list input bound to a "classes" key.
+	 *
+	 * @param string $key Class key.
+	 * @return void
+	 */
+	private static function class_field( string $key ): void {
+		$value   = (string) FC_Settings::get()['classes'][ $key ];
+		$default = (string) FC_Settings::defaults()['classes'][ $key ];
+		?>
+		<input type="text" name="<?php echo esc_attr( self::name( 'classes' ) ); ?>[<?php echo esc_attr( $key ); ?>]" value="<?php echo esc_attr( $value ); ?>" class="regular-text code" spellcheck="false">
+		<p class="description">
+			<?php
+			printf(
+				/* translators: %s: default class names. */
+				esc_html__( 'Added next to the plugin’s own classes. Separate multiple classes with a space; leave empty to add none. Default: %s', 'fishcakes' ),
+				'<code>' . esc_html( $default ) . '</code>'
+			);
+			?>
+		</p>
 		<?php
 	}
 
