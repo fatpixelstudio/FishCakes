@@ -1,0 +1,41 @@
+/**
+ * FishCakes — settings page styles.
+ */
+
+.fc-script-row {
+	margin: 0 0 12px;
+	padding: 12px;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	background: #fff;
+}
+
+.fc-script-row__head {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
+	align-items: center;
+}
+
+.fc-script-row__head select {
+	min-width: 9em;
+}
+
+.fc-script-row__enabled {
+	display: inline-flex;
+	align-items: center;
+	margin-right: 4px;
+}
+
+.fc-script-row__code,
+.fc-script-row__url {
+	margin-top: 8px;
+}
+
+.fc-script-row__code textarea {
+	font-family: Consolas, Monaco, monospace;
+}
+
+.fc-script-remove {
+	color: #b32d2e;
+}
