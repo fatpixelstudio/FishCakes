@@ -11,14 +11,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-18T19:23:51+00:00\n"
+"POT-Creation-Date: 2026-11-19T12:44:30+00:00\n"
 "PO-Revision-Date: 2026-11-18 20:00+0100\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: fishcakes\n"
 
 #. Plugin Name of the plugin
 #: fishcakes.php
-#: includes/class-fc-admin.php:57
 msgid "FishCakes"
 msgstr "FishCakes"
 
@@ -43,346 +42,359 @@ msgid "https://fatpixel.studio"
 msgstr "https://fatpixel.studio"
 
 #: includes/class-fc-admin.php:56
-msgid "FishCakes cookie consent"
-msgstr "FishCakes cookietoestemming"
+msgid "Cookie consent"
+msgstr "Cookietoestemming"
 
-#: includes/class-fc-admin.php:97
+#: includes/class-fc-admin.php:63
+msgctxt "admin menu label"
+msgid "Cookie consent"
+msgstr "Cookie&shy;toestemming"
+
+#: includes/class-fc-admin.php:103
 msgid "General"
 msgstr "Algemeen"
 
-#: includes/class-fc-admin.php:98
+#: includes/class-fc-admin.php:104
 msgid "Appearance"
 msgstr "Weergave"
 
-#: includes/class-fc-admin.php:99
+#: includes/class-fc-admin.php:105
 msgid "Theme classes"
 msgstr "Themeklassen"
 
-#: includes/class-fc-admin.php:100
+#: includes/class-fc-admin.php:106
 msgid "Cookie categories"
 msgstr "Cookiecategorieën"
 
-#: includes/class-fc-admin.php:101
+#: includes/class-fc-admin.php:107
 msgid "Banner texts"
 msgstr "Bannerteksten"
 
-#: includes/class-fc-admin.php:102
+#: includes/class-fc-admin.php:108
 msgid "Scripts"
 msgstr "Scripts"
 
-#: includes/class-fc-admin.php:103
+#: includes/class-fc-admin.php:109
 msgid "Blocked embeds"
 msgstr "Geblokkeerde embeds"
 
-#: includes/class-fc-admin.php:155
+#: includes/class-fc-admin.php:161
 msgid "Enable"
 msgstr "Inschakelen"
 
-#: includes/class-fc-admin.php:156
+#: includes/class-fc-admin.php:162
 msgid "Show the consent banner, gate registered scripts and block embeds."
 msgstr "Toon de toestemmingsbanner, scherm geregistreerde scripts af en blokkeer embeds."
 
-#: includes/class-fc-admin.php:163
+#: includes/class-fc-admin.php:169
 msgid "Banner position"
 msgstr "Positie van de banner"
 
-#: includes/class-fc-admin.php:164
+#: includes/class-fc-admin.php:170
 msgid "Bottom (recommended)"
 msgstr "Onderaan (aanbevolen)"
 
-#: includes/class-fc-admin.php:164
+#: includes/class-fc-admin.php:170
 msgid "Top"
 msgstr "Bovenaan"
 
-#: includes/class-fc-admin.php:171
+#: includes/class-fc-admin.php:177
 msgid "Consent expiry (days)"
 msgstr "Geldigheid toestemming (dagen)"
 
-#: includes/class-fc-admin.php:172
+#: includes/class-fc-admin.php:178
 msgid "How long a consent stays valid. After it expires, the banner returns. Max 365."
 msgstr "Hoe lang een toestemming geldig blijft. Daarna verschijnt de banner opnieuw. Maximaal 365."
 
-#: includes/class-fc-admin.php:179
+#: includes/class-fc-admin.php:185
 msgid "Banner version"
 msgstr "Bannerversie"
 
-#: includes/class-fc-admin.php:180
+#: includes/class-fc-admin.php:186
 msgid "Increase this number to ask every visitor for consent again, for example after changing the texts or your cookie policy."
 msgstr "Verhoog dit getal om elke bezoeker opnieuw om toestemming te vragen, bijvoorbeeld na het aanpassen van de teksten of je cookiebeleid."
 
-#: includes/class-fc-admin.php:187
+#: includes/class-fc-admin.php:193
 msgid "Privacy page"
 msgstr "Privacypagina"
 
-#: includes/class-fc-admin.php:195
+#: includes/class-fc-admin.php:201
 msgid "Footer link"
 msgstr "Footerlink"
 
-#: includes/class-fc-admin.php:196
+#: includes/class-fc-admin.php:202
 msgid "Automatically add a “Cookie settings” button to the footer, so consent can always be withdrawn."
 msgstr "Voeg automatisch een knop “Cookie-instellingen” toe aan de footer, zodat toestemming altijd kan worden ingetrokken."
 
-#: includes/class-fc-admin.php:203
+#: includes/class-fc-admin.php:209
 msgid "Cache-safe mode"
 msgstr "Cacheveilige modus"
 
-#: includes/class-fc-admin.php:204
+#: includes/class-fc-admin.php:210
 msgid "For sites with a full-page cache that ignores cookies. Embeds are always rendered as placeholders and upgraded in the browser, so cached pages can never show embeds to visitors who did not consent."
 msgstr "Voor sites met een full-page cache die cookies negeert. Embeds worden altijd als placeholder weergegeven en pas in de browser geladen, zodat gecachte pagina's nooit embeds tonen aan bezoekers die geen toestemming gaven."
 
-#: includes/class-fc-admin.php:217
+#: includes/class-fc-admin.php:223
 msgid "Background"
 msgstr "Achtergrond"
 
-#: includes/class-fc-admin.php:218
+#: includes/class-fc-admin.php:224
 msgid "Text"
 msgstr "Tekst"
 
-#: includes/class-fc-admin.php:219
+#: includes/class-fc-admin.php:225
 msgid "Border"
 msgstr "Rand"
 
-#: includes/class-fc-admin.php:220
-#: includes/class-fc-admin.php:252
+#: includes/class-fc-admin.php:226
+#: includes/class-fc-admin.php:266
 msgid "Buttons (primary)"
 msgstr "Knoppen (primair)"
 
-#: includes/class-fc-admin.php:221
+#: includes/class-fc-admin.php:227
 msgid "Button text (primary)"
 msgstr "Knoptekst (primair)"
 
-#: includes/class-fc-admin.php:236
+#: includes/class-fc-admin.php:242
 msgid "Border radius"
 msgstr "Afronding hoeken"
 
-#: includes/class-fc-admin.php:237
+#: includes/class-fc-admin.php:243
 msgid "For example 6px, 0.5rem or 0. Empty uses the default (6px)."
 msgstr "Bijvoorbeeld 6px, 0.5rem of 0. Leeg gebruikt de standaardwaarde (6px)."
 
-#: includes/class-fc-admin.php:250
+#: includes/class-fc-admin.php:257
+msgid "Default element styles"
+msgstr "Standaardstijlen voor elementen"
+
+#: includes/class-fc-admin.php:258
+msgid "Load the plugin’s own styles for buttons, links and titles. Switch this off when your theme styles them through the classes below. The button colors and border radius under Appearance then only apply to the banner and placeholders."
+msgstr "Laad de eigen stijlen van de plugin voor knoppen, links en titels. Zet dit uit als je theme ze opmaakt via de classes hieronder. De knopkleuren en afronding onder Weergave gelden dan alleen nog voor de banner en de placeholders."
+
+#: includes/class-fc-admin.php:264
 msgid "Titles"
 msgstr "Titels"
 
-#: includes/class-fc-admin.php:251
+#: includes/class-fc-admin.php:265
 msgid "Buttons"
 msgstr "Knoppen"
 
-#: includes/class-fc-admin.php:253
+#: includes/class-fc-admin.php:267
 msgid "Buttons (secondary)"
 msgstr "Knoppen (secundair)"
 
-#: includes/class-fc-admin.php:254
+#: includes/class-fc-admin.php:268
 msgid "Links"
 msgstr "Links"
 
-#: includes/class-fc-admin.php:275
+#: includes/class-fc-admin.php:289
 msgid "Necessary — label"
 msgstr "Noodzakelijk — label"
 
-#: includes/class-fc-admin.php:276
+#: includes/class-fc-admin.php:290
 msgid "Necessary — description"
 msgstr "Noodzakelijk — omschrijving"
 
-#: includes/class-fc-admin.php:277
+#: includes/class-fc-admin.php:291
 msgid "Analytical — label"
 msgstr "Analytisch — label"
 
-#: includes/class-fc-admin.php:278
+#: includes/class-fc-admin.php:292
 msgid "Analytical — description"
 msgstr "Analytisch — omschrijving"
 
-#: includes/class-fc-admin.php:279
+#: includes/class-fc-admin.php:293
 msgid "Marketing & social media — label"
 msgstr "Marketing & social media — label"
 
-#: includes/class-fc-admin.php:280
+#: includes/class-fc-admin.php:294
 msgid "Marketing & social media — description"
 msgstr "Marketing & social media — omschrijving"
 
-#: includes/class-fc-admin.php:301
+#: includes/class-fc-admin.php:315
 msgid "Banner title"
 msgstr "Bannertitel"
 
-#: includes/class-fc-admin.php:302
+#: includes/class-fc-admin.php:316
 msgid "Banner intro"
 msgstr "Introtekst banner"
 
-#: includes/class-fc-admin.php:303
+#: includes/class-fc-admin.php:317
 msgid "Privacy link text"
 msgstr "Tekst privacylink"
 
-#: includes/class-fc-admin.php:304
+#: includes/class-fc-admin.php:318
 msgid "Button: accept all"
 msgstr "Knop: alles accepteren"
 
-#: includes/class-fc-admin.php:305
+#: includes/class-fc-admin.php:319
 msgid "Button: reject all"
 msgstr "Knop: alles weigeren"
 
-#: includes/class-fc-admin.php:306
+#: includes/class-fc-admin.php:320
 msgid "Button: save choices"
 msgstr "Knop: keuzes opslaan"
 
-#: includes/class-fc-admin.php:307
+#: includes/class-fc-admin.php:321
 msgid "Button: change choices"
 msgstr "Knop: keuzes aanpassen"
 
-#: includes/class-fc-admin.php:308
+#: includes/class-fc-admin.php:322
 msgid "Confirmation message"
 msgstr "Bevestigingsmelding"
 
-#: includes/class-fc-admin.php:309
+#: includes/class-fc-admin.php:323
 msgid "Footer link text"
 msgstr "Tekst footerlink"
 
-#: includes/class-fc-admin.php:331
+#: includes/class-fc-admin.php:345
 msgid "Registered scripts"
 msgstr "Geregistreerde scripts"
 
-#: includes/class-fc-admin.php:346
+#: includes/class-fc-admin.php:360
 msgid "Block embeds"
 msgstr "Embeds blokkeren"
 
-#: includes/class-fc-admin.php:347
+#: includes/class-fc-admin.php:361
 msgid "Replace embeds that may place tracking cookies with a placeholder until marketing consent is given. Covers the block editor, classic editor, raw iframes, ACF oEmbed and ACF WYSIWYG fields."
 msgstr "Vervang embeds die trackingcookies kunnen plaatsen door een placeholder totdat er toestemming is voor marketingcookies. Werkt voor de blokeditor, de klassieke editor, losse iframes en ACF oEmbed- en WYSIWYG-velden."
 
-#: includes/class-fc-admin.php:354
+#: includes/class-fc-admin.php:368
 msgid "Providers"
 msgstr "Aanbieders"
 
-#: includes/class-fc-admin.php:362
+#: includes/class-fc-admin.php:376
 msgid "Custom hosts"
 msgstr "Eigen hosts"
 
-#: includes/class-fc-admin.php:369
+#: includes/class-fc-admin.php:383
 msgid "Placeholder button"
 msgstr "Knop in placeholder"
 
-#: includes/class-fc-admin.php:370
+#: includes/class-fc-admin.php:384
 msgid "Placeholder text: no choice yet"
 msgstr "Placeholdertekst: nog geen keuze"
 
-#: includes/class-fc-admin.php:371
+#: includes/class-fc-admin.php:385
 msgid "Placeholder text: not allowed"
 msgstr "Placeholdertekst: niet toegestaan"
 
-#: includes/class-fc-admin.php:400
+#: includes/class-fc-admin.php:414
 msgid "Enabled"
 msgstr "Ingeschakeld"
 
-#: includes/class-fc-admin.php:472
+#: includes/class-fc-admin.php:486
 msgid "Leave empty to use the default (translated) text."
 msgstr "Laat leeg om de standaard (vertaalde) tekst te gebruiken."
 
-#: includes/class-fc-admin.php:475
+#: includes/class-fc-admin.php:489
 msgid "Leave empty to use the default text. Use {privacy_link} to insert a link to your privacy page. Basic HTML allowed."
 msgstr "Laat leeg om de standaardtekst te gebruiken. Gebruik {privacy_link} om een link naar je privacypagina in te voegen. Eenvoudige HTML is toegestaan."
 
 #. translators: %s: default class names.
-#: includes/class-fc-admin.php:502
+#: includes/class-fc-admin.php:516
 #, php-format
 msgid "Added next to the plugin’s own classes. Separate multiple classes with a space; leave empty to add none. Default: %s"
 msgstr "Wordt toegevoegd naast de eigen classes van de plugin. Scheid meerdere classes met een spatie; laat leeg om niets toe te voegen. Standaard: %s"
 
-#: includes/class-fc-admin.php:536
+#: includes/class-fc-admin.php:550
 msgid "— Select a page —"
 msgstr "— Selecteer een pagina —"
 
-#: includes/class-fc-admin.php:542
+#: includes/class-fc-admin.php:556
 msgid "Linked from the banner intro via the {privacy_link} token."
 msgstr "Gelinkt vanuit de introtekst van de banner via de {privacy_link}-code."
 
 #. translators: Embed provider name.
-#: includes/class-fc-admin.php:554
-#: includes/class-fc-settings.php:233
+#: includes/class-fc-admin.php:568
+#: includes/class-fc-settings.php:234
 msgid "YouTube"
 msgstr "YouTube"
 
 #. translators: Embed provider name.
-#: includes/class-fc-admin.php:555
-#: includes/class-fc-settings.php:238
+#: includes/class-fc-admin.php:569
+#: includes/class-fc-settings.php:239
 msgid "Vimeo"
 msgstr "Vimeo"
 
 #. translators: Embed provider name.
-#: includes/class-fc-admin.php:556
-#: includes/class-fc-settings.php:243
+#: includes/class-fc-admin.php:570
+#: includes/class-fc-settings.php:244
 msgid "Spotify"
 msgstr "Spotify"
 
 #. translators: Embed provider name.
-#: includes/class-fc-admin.php:557
-#: includes/class-fc-settings.php:248
+#: includes/class-fc-admin.php:571
+#: includes/class-fc-settings.php:249
 msgid "SoundCloud"
 msgstr "SoundCloud"
 
-#: includes/class-fc-admin.php:558
+#: includes/class-fc-admin.php:572
 msgid "Google (Maps, Docs, Calendar)"
 msgstr "Google (Maps, Docs, Agenda)"
 
-#: includes/class-fc-admin.php:562
+#: includes/class-fc-admin.php:576
 msgid "Blocked embed providers"
 msgstr "Geblokkeerde embed-aanbieders"
 
-#: includes/class-fc-admin.php:569
+#: includes/class-fc-admin.php:583
 msgid "Hosts and all their subdomains are matched against embed URLs and iframe sources."
 msgstr "Hosts en al hun subdomeinen worden vergeleken met embed-URL's en iframe-bronnen."
 
-#: includes/class-fc-admin.php:582
+#: includes/class-fc-admin.php:596
 msgid "One hostname per line, optionally followed by | and a display name. Blocks embeds from these hosts and their subdomains."
 msgstr "Eén hostnaam per regel, eventueel gevolgd door | en een weergavenaam. Blokkeert embeds van deze hosts en hun subdomeinen."
 
-#: includes/class-fc-admin.php:609
+#: includes/class-fc-admin.php:623
 msgid "Scripts are printed as inert placeholders and only execute after the visitor consents to their category. The choice is applied without a page reload."
 msgstr "Scripts worden als inactieve placeholders geplaatst en pas uitgevoerd nadat de bezoeker toestemming geeft voor hun categorie. De keuze wordt toegepast zonder de pagina te herladen."
 
-#: includes/class-fc-admin.php:622
+#: includes/class-fc-admin.php:636
 msgid "Add script"
 msgstr "Script toevoegen"
 
-#: includes/class-fc-admin.php:627
+#: includes/class-fc-admin.php:641
 msgid "Inline code: paste the snippet, with or without the surrounding <script> tags. Source URL: load an external script file."
 msgstr "Inline code: plak de snippet, met of zonder de omringende <script>-tags. Bron-URL: laad een extern scriptbestand."
 
-#: includes/class-fc-admin.php:660
+#: includes/class-fc-admin.php:674
 msgid "Script enabled"
 msgstr "Script ingeschakeld"
 
-#: includes/class-fc-admin.php:662
+#: includes/class-fc-admin.php:676
 msgid "Name (for example: Google Analytics 4)"
 msgstr "Naam (bijvoorbeeld: Google Analytics 4)"
 
-#: includes/class-fc-admin.php:664
-#: includes/class-fc-settings.php:179
+#: includes/class-fc-admin.php:678
+#: includes/class-fc-settings.php:180
 msgid "Analytical"
 msgstr "Analytisch"
 
-#: includes/class-fc-admin.php:665
+#: includes/class-fc-admin.php:679
 msgid "Marketing"
 msgstr "Marketing"
 
-#: includes/class-fc-admin.php:668
+#: includes/class-fc-admin.php:682
 msgid "Head"
 msgstr "Head"
 
-#: includes/class-fc-admin.php:669
+#: includes/class-fc-admin.php:683
 msgid "Footer"
 msgstr "Footer"
 
-#: includes/class-fc-admin.php:672
+#: includes/class-fc-admin.php:686
 msgid "Inline code"
 msgstr "Inline code"
 
-#: includes/class-fc-admin.php:673
+#: includes/class-fc-admin.php:687
 msgid "Source URL"
 msgstr "Bron-URL"
 
-#: includes/class-fc-admin.php:675
+#: includes/class-fc-admin.php:689
 msgid "Remove this script"
 msgstr "Dit script verwijderen"
 
-#: includes/class-fc-admin.php:679
+#: includes/class-fc-admin.php:693
 msgid "Paste the snippet here — with or without the surrounding <script> tags."
 msgstr "Plak de snippet hier — met of zonder de omringende <script>-tags."
 
@@ -392,78 +404,78 @@ msgstr "Plak de snippet hier — met of zonder de omringende <script>-tags."
 msgid "FishCakes requires WordPress %1$s or higher and PHP %2$s or higher. The plugin is not active on this site."
 msgstr "FishCakes vereist WordPress %1$s of hoger en PHP %2$s of hoger. De plugin is niet actief op deze site."
 
-#: includes/class-fc-settings.php:165
+#: includes/class-fc-settings.php:166
 msgid "Cookies"
 msgstr "Cookies"
 
-#: includes/class-fc-settings.php:166
+#: includes/class-fc-settings.php:167
 msgid "We use cookies and similar technologies on this website. Choose which cookies we may place. You can change your choice at any time. See our {privacy_link} for more information."
 msgstr "Wij gebruiken cookies en vergelijkbare technieken op deze website. Kies welke cookies we mogen plaatsen. Je kunt je keuze altijd weer aanpassen. Lees ons {privacy_link} voor meer informatie."
 
-#: includes/class-fc-settings.php:167
+#: includes/class-fc-settings.php:168
 msgid "privacy policy"
 msgstr "privacybeleid"
 
-#: includes/class-fc-settings.php:168
+#: includes/class-fc-settings.php:169
 msgid "Accept all cookies"
 msgstr "Alle cookies accepteren"
 
-#: includes/class-fc-settings.php:169
+#: includes/class-fc-settings.php:170
 msgid "Reject all cookies"
 msgstr "Alle cookies weigeren"
 
-#: includes/class-fc-settings.php:170
+#: includes/class-fc-settings.php:171
 msgid "Save choices"
 msgstr "Keuzes opslaan"
 
-#: includes/class-fc-settings.php:171
+#: includes/class-fc-settings.php:172
 msgid "Change choices"
 msgstr "Keuzes aanpassen"
 
-#: includes/class-fc-settings.php:172
+#: includes/class-fc-settings.php:173
 msgid "Your cookie preferences have been saved."
 msgstr "Je cookievoorkeuren zijn opgeslagen."
 
-#: includes/class-fc-settings.php:173
 #: includes/class-fc-settings.php:174
+#: includes/class-fc-settings.php:175
 msgid "Cookie settings"
 msgstr "Cookie-instellingen"
 
-#: includes/class-fc-settings.php:175
+#: includes/class-fc-settings.php:176
 msgid "You have not made a choice about cookies yet, so we cannot show this content. It may be placed by a third party that could follow you across websites."
 msgstr "Je hebt nog geen keuze gemaakt over cookies, daarom kunnen we deze inhoud niet tonen. De inhoud wordt mogelijk geplaatst door een derde partij die je over verschillende websites kan volgen."
 
-#: includes/class-fc-settings.php:176
+#: includes/class-fc-settings.php:177
 msgid "Your cookie preferences do not allow this content, because it may be placed by a third party that could follow you across websites."
 msgstr "Je cookievoorkeuren staan deze inhoud niet toe, omdat die mogelijk wordt geplaatst door een derde partij die je over verschillende websites kan volgen."
 
-#: includes/class-fc-settings.php:177
+#: includes/class-fc-settings.php:178
 msgid "Necessary"
 msgstr "Noodzakelijk"
 
-#: includes/class-fc-settings.php:178
+#: includes/class-fc-settings.php:179
 msgid "Necessary cookies are needed for this website to work — for example, to remember your cookie choices. These cannot be switched off."
 msgstr "Noodzakelijke cookies zijn nodig om deze website te laten werken — bijvoorbeeld om je cookiekeuze te onthouden. Deze kunnen niet worden uitgeschakeld."
 
-#: includes/class-fc-settings.php:180
+#: includes/class-fc-settings.php:181
 msgid "Analytical cookies measure how this website is used — for example which pages are visited and for how long. We use this data to improve the website."
 msgstr "Analytische cookies meten hoe deze website wordt gebruikt — bijvoorbeeld welke pagina's worden bezocht en hoe lang. Met deze gegevens verbeteren we de website."
 
-#: includes/class-fc-settings.php:181
+#: includes/class-fc-settings.php:182
 msgid "Marketing & social media"
 msgstr "Marketing & social media"
 
-#: includes/class-fc-settings.php:182
+#: includes/class-fc-settings.php:183
 msgid "Marketing and social media cookies are placed by third parties — such as YouTube, Vimeo and Spotify — to show embedded content and to tailor advertisements to your interests."
 msgstr "Marketing- en socialmediacookies worden geplaatst door derde partijen — zoals YouTube, Vimeo en Spotify — om ingesloten inhoud te tonen en advertenties af te stemmen op je interesses."
 
 #. translators: Embed provider name.
-#: includes/class-fc-settings.php:253
+#: includes/class-fc-settings.php:254
 msgid "Google Maps"
 msgstr "Google Maps"
 
 #. translators: %d: number of script rows.
-#: includes/class-fc-settings.php:557
+#: includes/class-fc-settings.php:559
 #, php-format
 msgid "FishCakes: %d script was not saved because it was empty or its URL was invalid."
 msgid_plural "FishCakes: %d scripts were not saved because they were empty or their URLs were invalid."

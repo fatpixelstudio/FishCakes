@@ -199,7 +199,8 @@ class FC_Blocker {
 		?>
 		<div class="fc-blocker <?php echo $allowed ? 'is-allowed' : 'is-blocked'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static strings ?>" data-fc-blocker data-fc-name="<?php echo esc_attr( $label ); ?>">
 			<template><?php echo $marked; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- inert template copy of the original embed ?></template>
-			<div class="fc-blocker__notice">
+			<?php // data-nosnippet: keep the notice out of search result snippets (it sits inside the post content). ?>
+			<div class="fc-blocker__notice" data-nosnippet>
 				<p class="<?php echo esc_attr( FC_Settings::classes( 'fc-blocker__title', array( 'heading' ) ) ); ?>"><?php echo esc_html( $label ); ?></p>
 				<p class="fc-blocker__text" data-fc-text-nochoice="<?php echo esc_attr( $no_choice ); ?>" data-fc-text-blocked="<?php echo esc_attr( $blocked ); ?>"><?php echo wp_kses( $notice, FC_Settings::allowed_text_html() ); ?></p>
 				<button type="button" class="<?php echo esc_attr( FC_Settings::classes( 'fc-btn fc-btn--secondary', array( 'button', 'button_secondary' ) ) ); ?>" data-fc-open><?php echo esc_html( FC_Settings::text( 'embed_button' ) ); ?></button>

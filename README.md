@@ -56,6 +56,7 @@ Dialog semantics (`role="dialog"`, non-modal) with focus moved to the banner on 
 
 - **General** — enable, banner position, consent expiry (days), banner version, privacy page, automatic footer link, cache-safe mode.
 - **Appearance** — five color pickers and a border radius, all output as `--fc-*` CSS custom properties; the stylesheet reads every visual property from those variables.
+- **Theme classes** — extra classes for titles, buttons (base / primary / secondary) and links, added next to the plugin's own `fc-*` classes. Defaults match the Fat Pixel NoodleSoup starter kit (`gamma-heading`, `button button--primary`, `button button--secondary`, `link`); empty adds nothing. Switch off **Default element styles** to drop the plugin's button, link and title CSS (`fishcakes-elements.css`) and let the theme style them.
 - **Cookie categories** — labels and descriptions per category (mention purposes and third parties, as the GDPR expects).
 - **Banner texts** — every text is editable; empty means "use the translated default" (shown as the placeholder). The intro supports a `{privacy_link}` token and basic HTML.
 - **Scripts** — repeater with name, category (analytical/marketing), location (head/footer), inline code or source URL.

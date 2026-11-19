@@ -1,0 +1,90 @@
+/**
+ * FishCakes — default element styles.
+ *
+ * Buttons, link-style buttons, titles and their focus states. Loaded on
+ * top of fishcakes.css only while "Default element styles" is on
+ * (Settings → FishCakes → Theme classes). Switch it off to let a theme
+ * or starter kit style these elements through the configured classes.
+ */
+
+/* Visible focus for every interactive element (WCAG 2.4.7). */
+.fc-banner :focus-visible,
+.fc-blocker :focus-visible,
+.fc-footer-link:focus-visible,
+.fc-reopen:focus-visible {
+	outline: 2px solid var(--fc-color-focus);
+	outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------ *
+ * Buttons
+ * ------------------------------------------------------------------ */
+
+.fc-btn {
+	display: inline-block;
+	padding: 0.625rem 1.25rem;
+	border: 1px solid transparent;
+	border-radius: var(--fc-radius);
+	background: var(--fc-color-primary);
+	color: var(--fc-color-primary-text);
+	font: inherit;
+	font-weight: 600;
+	line-height: 1.2;
+	cursor: pointer;
+}
+
+.fc-btn:hover {
+	filter: brightness(1.12);
+}
+
+.fc-btn--secondary {
+	background: var(--fc-color-bg);
+	border-color: var(--fc-color-border);
+	color: var(--fc-color-text);
+}
+
+/* ------------------------------------------------------------------ *
+ * Link-style buttons
+ * ------------------------------------------------------------------ */
+
+.fc-link,
+.fc-footer-link,
+.fc-reopen {
+	color: var(--fc-color-text);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.fc-footer-link,
+.fc-reopen {
+	display: inline-block;
+	font-size: 0.875em;
+}
+
+/* ------------------------------------------------------------------ *
+ * Titles
+ * ------------------------------------------------------------------ */
+
+.fc-banner__title {
+	margin: 0 0 0.25rem;
+	font-size: 1.125rem;
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+.fc-blocker__title {
+	margin: 0;
+	font-weight: 700;
+}
+
+/* ------------------------------------------------------------------ *
+ * Motion preferences
+ * ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+	.fc-btn,
+	.fc-link {
+		transition: none !important;
+		animation: none !important;
+	}
+}

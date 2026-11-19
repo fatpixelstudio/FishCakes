@@ -71,6 +71,7 @@ class FC_Settings {
 			 * Defaults match the Fat Pixel NoodleSoup starter kit; an empty
 			 * value adds nothing.
 			 */
+			'element_styles'   => true,
 			'classes'          => array(
 				'heading'          => 'gamma-heading',
 				'button'           => 'button',
@@ -369,6 +370,7 @@ class FC_Settings {
 		$out['auto_footer_link']   = ! empty( $input['auto_footer_link'] );
 		$out['cache_safe']         = ! empty( $input['cache_safe'] );
 		$out['blocker_enabled']    = ! empty( $input['blocker_enabled'] );
+		$out['element_styles']     = ! empty( $input['element_styles'] );
 		$out['radius']             = self::sanitize_radius( (string) ( $input['radius'] ?? '' ) );
 
 		foreach ( array_keys( $defaults['texts'] ) as $key ) {

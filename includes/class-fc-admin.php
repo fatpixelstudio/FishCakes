@@ -53,8 +53,14 @@ class FC_Admin {
 	 */
 	public static function add_page(): void {
 		add_options_page(
-			__( 'FishCakes cookie consent', 'fishcakes' ),
-			__( 'FishCakes', 'fishcakes' ),
+			__( 'Cookie consent', 'fishcakes' ),
+			/*
+			 * Menu labels are printed as HTML, so translations may use
+			 * &shy; to hyphenate long words in the narrow admin menu
+			 * (e.g. "Cookie&shy;toestemming"). The page title above is
+			 * escaped into <title>, so it must stay plain text.
+			 */
+			_x( 'Cookie consent', 'admin menu label', 'fishcakes' ),
 			'manage_options',
 			self::PAGE_SLUG,
 			array( __CLASS__, 'render_page' )
@@ -246,6 +252,14 @@ class FC_Admin {
 	 * @return void
 	 */
 	private static function add_class_fields(): void {
+		add_settings_field(
+			'fc_element_styles',
+			__( 'Default element styles', 'fishcakes' ),
+			fn() => self::checkbox_field( 'element_styles', __( 'Load the plugin’s own styles for buttons, links and titles. Switch this off when your theme styles them through the classes below. The button colors and border radius under Appearance then only apply to the banner and placeholders.', 'fishcakes' ) ),
+			self::PAGE_SLUG,
+			'fc_classes'
+		);
+
 		$labels = array(
 			'heading'          => __( 'Titles', 'fishcakes' ),
 			'button'           => __( 'Buttons', 'fishcakes' ),

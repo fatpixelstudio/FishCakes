@@ -13,6 +13,14 @@
 	--fc-color-border: #d4d4d8;
 	--fc-color-primary: #18181b;
 	--fc-color-primary-text: #fff;
+
+	/*
+	 * Focus rings sit outside the element (outline-offset), so they are
+	 * drawn on the banner/placeholder background, not on the button.
+	 * The banner text color is guaranteed to contrast with that
+	 * background; currentcolor would turn white on a primary button.
+	 */
+	--fc-color-focus: var(--fc-color-text);
 	--fc-radius: 6px;
 	--fc-z-index: 99999;
 	--fc-banner-h: 0px;
@@ -50,59 +58,52 @@
 	border: 0;
 }
 
-/* Visible focus for every interactive element (WCAG 2.4.7). */
-.fc-banner :focus-visible,
-.fc-blocker :focus-visible,
-.fc-footer-link:focus-visible,
-.fc-reopen:focus-visible {
-	outline: 2px solid currentcolor;
+/*
+ * Visible focus for the category checkboxes (WCAG 2.4.7). Buttons and
+ * links get theirs from fishcakes-elements.css, or from the theme when
+ * the default element styles are switched off.
+ */
+.fc-category__input:focus-visible {
+	outline: 2px solid var(--fc-color-focus);
 	outline-offset: 2px;
 }
 
+/*
+ * The banner title only receives focus from script (tabindex="-1"), when
+ * the banner is reopened, as a starting point for screen readers. It is
+ * not a control, so a full focus ring reads as "clickable"; a dotted
+ * underline still shows sighted keyboard users where focus is. The extra
+ * .fc-banner keeps this above the generic ring in fishcakes-elements.css.
+ */
+.fc-banner .fc-banner__title:focus {
+	outline: none;
+}
+
+.fc-banner .fc-banner__title:focus-visible {
+	text-decoration-line: underline;
+	text-decoration-style: dotted;
+	text-decoration-thickness: 2px;
+	text-underline-offset: 0.25em;
+}
+
 /* ------------------------------------------------------------------ *
- * Buttons
+ * Link-style buttons
  * ------------------------------------------------------------------ */
 
-.fc-btn {
-	display: inline-block;
-	padding: 0.625rem 1.25rem;
-	border: 1px solid transparent;
-	border-radius: var(--fc-radius);
-	background: var(--fc-color-primary);
-	color: var(--fc-color-primary-text);
-	font: inherit;
-	font-weight: 600;
-	line-height: 1.2;
-	cursor: pointer;
-}
-
-.fc-btn:hover {
-	filter: brightness(1.12);
-}
-
-.fc-btn--secondary {
-	background: var(--fc-color-bg);
-	border-color: var(--fc-color-border);
-	color: var(--fc-color-text);
-}
-
+/*
+ * These are <button> elements that should read as text links. Strip the
+ * native button chrome here, so a theme's link class (which usually
+ * targets <a>) works on them; the link look itself lives in
+ * fishcakes-elements.css.
+ */
 .fc-link,
 .fc-footer-link,
 .fc-reopen {
 	padding: 0;
 	border: 0;
 	background: none;
-	color: var(--fc-color-text);
 	font: inherit;
-	text-decoration: underline;
-	text-underline-offset: 2px;
 	cursor: pointer;
-}
-
-.fc-footer-link,
-.fc-reopen {
-	display: inline-block;
-	font-size: 0.875em;
 }
 
 /* ------------------------------------------------------------------ *
@@ -113,7 +114,8 @@
  * The banner and the options panel are toggled through the [hidden]
  * attribute. Guard it with !important: the attribute's display:none
  * (UA stylesheet) loses against any author display rule — including
- * the .fc-blocker/.fc-btn rules below and any theme CSS that happens
+ * the .fc-blocker rules below, the button rules in
+ * fishcakes-elements.css and any theme CSS that happens
  * to target these classes. Without this guard the banner would ignore
  * the attribute entirely: it would be visible before consent and stay
  * visible after a choice is made.
@@ -173,13 +175,6 @@ html[data-fc-position='top'].fc-has-banner body {
 .fc-banner__content {
 	flex: 1 1 24rem;
 	min-width: 0;
-}
-
-.fc-banner__title {
-	margin: 0 0 0.25rem;
-	font-size: 1.125rem;
-	font-weight: 700;
-	line-height: 1.3;
 }
 
 .fc-banner__text {
@@ -282,11 +277,6 @@ html[data-fc-position='top'].fc-has-banner body {
 	margin-inline: auto;
 }
 
-.fc-blocker__title {
-	margin: 0;
-	font-weight: 700;
-}
-
 .fc-blocker__text {
 	margin: 0;
 	color: var(--fc-color-muted);
@@ -338,8 +328,6 @@ html[data-fc-position='top'].fc-has-banner body {
 
 @media (prefers-reduced-motion: reduce) {
 	.fc-banner,
-	.fc-btn,
-	.fc-link,
 	.fc-blocker {
 		transition: none !important;
 		animation: none !important;

@@ -23,6 +23,7 @@ class FC_Frontend {
 		add_action( 'wp_head', array( __CLASS__, 'print_scripts_head' ), 5 );
 		add_action( 'wp_footer', array( __CLASS__, 'print_scripts_foot' ), 20 );
 		add_action( 'wp_footer', array( __CLASS__, 'render_footer_link' ), 99 );
+		add_action( 'wp_body_open', array( __CLASS__, 'render_banner' ), 1 );
 		add_action( 'wp_footer', array( __CLASS__, 'render_banner' ), 100 );
 
 		add_shortcode( 'fishcakes_cookie_preferences', array( __CLASS__, 'shortcode' ) );
@@ -44,6 +45,16 @@ class FC_Frontend {
 	 */
 	public static function register_assets(): void {
 		wp_register_style( 'fishcakes', FISHCAKES_URL . 'assets/css/fishcakes.css', array(), FISHCAKES_VERSION );
+		wp_register_style( 'fishcakes-elements', FISHCAKES_URL . 'assets/css/fishcakes-elements.css', array( 'fishcakes' ), FISHCAKES_VERSION );
+
+		/*
+		 * Registering the file path lets core (wp_maybe_inline_styles())
+		 * print these small stylesheets inline in <head> instead of as
+		 * render-blocking <link> requests, within the shared
+		 * `styles_inline_size_limit` budget (20 kB by default).
+		 */
+		wp_style_add_data( 'fishcakes', 'path', FISHCAKES_PATH . 'assets/css/fishcakes.css' );
+		wp_style_add_data( 'fishcakes-elements', 'path', FISHCAKES_PATH . 'assets/css/fishcakes-elements.css' );
 		wp_register_script(
 			'fishcakes',
 			FISHCAKES_URL . 'assets/js/fishcakes.js',
@@ -66,10 +77,13 @@ class FC_Frontend {
 			return;
 		}
 
-		wp_enqueue_style( 'fishcakes' );
-		wp_enqueue_script( 'fishcakes' );
-
 		$settings = FC_Settings::get();
+
+		wp_enqueue_style( 'fishcakes' );
+		if ( $settings['element_styles'] ) {
+			wp_enqueue_style( 'fishcakes-elements' );
+		}
+		wp_enqueue_script( 'fishcakes' );
 
 		$css = self::custom_css();
 		if ( '' !== $css ) {
@@ -247,12 +261,21 @@ class FC_Frontend {
 	 * exists. Keeping the markup server-rendered avoids a banner flash and
 	 * keeps all texts translatable and admin-editable.
 	 *
+	 * Printed at the very start of <body> (`wp_body_open`), so it is the
+	 * first thing keyboard and screen reader users reach, and tabbing out
+	 * of it continues into the page instead of the browser chrome. Themes
+	 * that don't call wp_body_open() get it in the footer instead.
+	 *
 	 * @return void
 	 */
 	public static function render_banner(): void {
-		if ( ! self::is_enabled() ) {
+		static $rendered = false;
+
+		if ( $rendered || ! self::is_enabled() ) {
 			return;
 		}
+
+		$rendered = true;
 
 		$settings = FC_Settings::get();
 		$position = 'top' === $settings['position'] ? 'top' : 'bottom';

@@ -438,7 +438,13 @@
 			updateBlockers( state );
 		} else {
 			updateBlockers( state );
-			openBanner();
+			/*
+			 * Don't move focus on page load: it would skip the start of
+			 * the page (skip link, navigation) and, for screen readers,
+			 * start reading mid-page. The banner is the first element
+			 * in <body>, so it is reached first anyway.
+			 */
+			openBanner( false );
 		}
 	}
 
