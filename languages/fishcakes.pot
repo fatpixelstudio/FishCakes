@@ -444,11 +444,11 @@ msgid "Cookie settings"
 msgstr ""
 
 #: includes/class-fc-settings.php:176
-msgid "You have not made a choice about cookies yet, so we cannot show this content. It may be placed by a third party that could follow you across websites."
+msgid "This content comes from an external service that may place marketing cookies. You have not made a choice about cookies yet, so we are not showing it."
 msgstr ""
 
 #: includes/class-fc-settings.php:177
-msgid "Your cookie preferences do not allow this content, because it may be placed by a third party that could follow you across websites."
+msgid "This content comes from an external service that may place marketing cookies. Your cookie preferences do not allow that right now."
 msgstr ""
 
 #: includes/class-fc-settings.php:178

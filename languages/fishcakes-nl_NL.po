@@ -446,12 +446,12 @@ msgid "Cookie settings"
 msgstr "Cookie-instellingen"
 
 #: includes/class-fc-settings.php:176
-msgid "You have not made a choice about cookies yet, so we cannot show this content. It may be placed by a third party that could follow you across websites."
-msgstr "Je hebt nog geen keuze gemaakt over cookies, daarom kunnen we deze inhoud niet tonen. De inhoud wordt mogelijk geplaatst door een derde partij die je over verschillende websites kan volgen."
+msgid "This content comes from an external service that may place marketing cookies. You have not made a choice about cookies yet, so we are not showing it."
+msgstr "Deze inhoud komt van een externe dienst die mogelijk marketingcookies plaatst. Je hebt nog geen keuze gemaakt over cookies, daarom tonen we deze nog niet."
 
 #: includes/class-fc-settings.php:177
-msgid "Your cookie preferences do not allow this content, because it may be placed by a third party that could follow you across websites."
-msgstr "Je cookievoorkeuren staan deze inhoud niet toe, omdat die mogelijk wordt geplaatst door een derde partij die je over verschillende websites kan volgen."
+msgid "This content comes from an external service that may place marketing cookies. Your cookie preferences do not allow that right now."
+msgstr "Deze inhoud komt van een externe dienst die mogelijk marketingcookies plaatst. Dat staan je cookievoorkeuren nu niet toe."
 
 #: includes/class-fc-settings.php:178
 msgid "Necessary"
