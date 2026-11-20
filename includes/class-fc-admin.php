@@ -30,6 +30,7 @@ class FC_Admin {
 	const COLOR_DEFAULTS = array(
 		'bg'           => '#f7f7f8',
 		'text'         => '#27272a',
+		'muted'        => '#52525b',
 		'border'       => '#d4d4d8',
 		'primary'      => '#18181b',
 		'primary_text' => '#ffffff',
@@ -222,6 +223,7 @@ class FC_Admin {
 		$labels = array(
 			'bg'           => __( 'Background', 'fishcakes' ),
 			'text'         => __( 'Text', 'fishcakes' ),
+			'muted'        => __( 'Text (secondary)', 'fishcakes' ),
 			'border'       => __( 'Border', 'fishcakes' ),
 			'primary'      => __( 'Buttons (primary)', 'fishcakes' ),
 			'primary_text' => __( 'Button text (primary)', 'fishcakes' ),

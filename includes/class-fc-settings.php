@@ -58,6 +58,7 @@ class FC_Settings {
 			'colors'           => array(
 				'bg'           => '',
 				'text'         => '',
+				'muted'        => '',
 				'border'       => '',
 				'primary'      => '',
 				'primary_text' => '',

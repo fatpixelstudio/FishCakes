@@ -142,6 +142,10 @@ msgstr "Achtergrond"
 msgid "Text"
 msgstr "Tekst"
 
+#: includes/class-fc-admin.php:226
+msgid "Text (secondary)"
+msgstr "Tekst (secundair)"
+
 #: includes/class-fc-admin.php:225
 msgid "Border"
 msgstr "Rand"

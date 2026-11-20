@@ -118,6 +118,7 @@ class FC_Frontend {
 		$map = array(
 			'bg'           => '--fc-color-bg',
 			'text'         => '--fc-color-text',
+			'muted'        => '--fc-color-muted',
 			'border'       => '--fc-color-border',
 			'primary'      => '--fc-color-primary',
 			'primary_text' => '--fc-color-primary-text',

@@ -5,13 +5,16 @@
  * top of fishcakes.css only while "Default element styles" is on
  * (Settings → FishCakes → Theme classes). Switch it off to let a theme
  * or starter kit style these elements through the configured classes.
+ *
+ * Every selector is wrapped in :where(), which gives it zero
+ * specificity. These are fallbacks: a theme class added through
+ * Settings → FishCakes → Theme classes (.button--outline, .link, …)
+ * always wins, whatever order the stylesheets load in.
  */
 
 /* Visible focus for every interactive element (WCAG 2.4.7). */
-.fc-banner :focus-visible,
-.fc-blocker :focus-visible,
-.fc-footer-link:focus-visible,
-.fc-reopen:focus-visible {
+:where(.fc-banner, .fc-blocker) :focus-visible,
+:where(.fc-footer-link, .fc-reopen):focus-visible {
 	outline: 2px solid var(--fc-color-focus);
 	outline-offset: 2px;
 }
@@ -20,7 +23,7 @@
  * Buttons
  * ------------------------------------------------------------------ */
 
-.fc-btn {
+:where(.fc-btn) {
 	display: inline-block;
 	padding: 0.625rem 1.25rem;
 	border: 1px solid transparent;
@@ -33,11 +36,11 @@
 	cursor: pointer;
 }
 
-.fc-btn:hover {
+:where(.fc-btn):hover {
 	filter: brightness(1.12);
 }
 
-.fc-btn--secondary {
+:where(.fc-btn--secondary) {
 	background: var(--fc-color-bg);
 	border-color: var(--fc-color-border);
 	color: var(--fc-color-text);
@@ -47,16 +50,13 @@
  * Link-style buttons
  * ------------------------------------------------------------------ */
 
-.fc-link,
-.fc-footer-link,
-.fc-reopen {
+:where(.fc-link, .fc-footer-link, .fc-reopen) {
 	color: var(--fc-color-text);
 	text-decoration: underline;
 	text-underline-offset: 2px;
 }
 
-.fc-footer-link,
-.fc-reopen {
+:where(.fc-footer-link, .fc-reopen) {
 	display: inline-block;
 	font-size: 0.875em;
 }
@@ -65,14 +65,14 @@
  * Titles
  * ------------------------------------------------------------------ */
 
-.fc-banner__title {
+:where(.fc-banner__title) {
 	margin: 0 0 0.25rem;
 	font-size: 1.125rem;
 	font-weight: 700;
 	line-height: 1.3;
 }
 
-.fc-blocker__title {
+:where(.fc-blocker__title) {
 	margin: 0;
 	font-weight: 700;
 }

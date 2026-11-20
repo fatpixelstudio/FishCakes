@@ -140,6 +140,10 @@ msgstr ""
 msgid "Text"
 msgstr ""
 
+#: includes/class-fc-admin.php:226
+msgid "Text (secondary)"
+msgstr ""
+
 #: includes/class-fc-admin.php:225
 msgid "Border"
 msgstr ""
