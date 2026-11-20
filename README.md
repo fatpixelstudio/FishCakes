@@ -118,6 +118,20 @@ Useful test scenarios:
 4. Change your mind via the footer link → checkboxes reflect the current choice; revoking removes embeds immediately.
 5. Bump the banner version → the banner returns for every visitor.
 
+## Packaging
+
+Build a clean installable zip with `git archive`. Development files (lint config, `package.json`, `yarn.lock`, this README) are excluded through `export-ignore` in `.gitattributes`; `.git` and `node_modules` never end up in an archive.
+
+```sh
+git archive --format=zip --prefix=fishcakes/ -o ~/Desktop/fishcakes.zip HEAD
+```
+
+- `--prefix=fishcakes/` makes the plugin install into `wp-content/plugins/fishcakes`, whatever the local folder is called.
+- Only **committed** files are included — commit first, or uncommitted changes are missing from the zip.
+- Use a tag instead of `HEAD` for a release (e.g. `v2.0.0`).
+
+Install the zip through Plugins → Add New → Upload Plugin, or unzip it into `wp-content/plugins/`. Check the contents with `unzip -l ~/Desktop/fishcakes.zip`.
+
 ## Security
 
 A quick overview of the security posture — audited during development:
